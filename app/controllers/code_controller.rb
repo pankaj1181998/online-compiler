@@ -15,18 +15,18 @@ class CodeController < ApplicationController
 		req = Net::HTTP::Get.new(url.to_s)
 		res = Net::HTTP.start(url.host, url.port) { 
 							|http|  http.request(req)
-						}
+						} 
 		arr = JSON.parse(res.body)["items"]
 
 		@language_array = []
 		
-		#arr.each do |i|
-		#	@language_array << [ i["name"],i["id"] ]
-		#end  
-
 		arr.each do |i|
-		@language_array << [ i["name"],i["id"] ]
-		end if arr
+			@language_array << [ i["name"],i["id"] ]
+		end  
+
+		#arr.each do |i|
+		#@language_array << [ i["name"],i["id"] ]
+		#end if arr
 
   	end
 
