@@ -46,11 +46,10 @@ class CodeController < ApplicationController
 		uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
  		response = Net::HTTP.post_form(uri, {'sourceCode' => params["sc"] , 'compilerId' => params["Compiler"], 'input' => params["testcase"]})
  		
- 		returned_id=JSON.parse(response.body)["id"]
-					returned_status=-1
-					
-
-					sleep(5)
+ 		
+ 		returned_id=JSON.parse(response.body)["id"].to_s
+					returned_status=-1	
+		 				
 					
 							url = URI.parse('http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/'+returned_id+'?access_token=6bf3291fc2e34e712d804efe8a198e11')
 							req = Net::HTTP::Get.new(url.to_s)
