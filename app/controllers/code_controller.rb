@@ -8,10 +8,10 @@ require 'dotenv/load'
 
 class CodeController < ApplicationController
 	
-	#at=ENV['personal_key']
+	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
-		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=" + ENV['personal_key'].to_s)
+		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=" + ENV['personal_key'])
 		req = Net::HTTP::Get.new(url.to_s)
 		res = Net::HTTP.start(url.host, url.port) { 
 							|http|  http.request(req)
