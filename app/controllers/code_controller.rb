@@ -38,7 +38,7 @@ class CodeController < ApplicationController
 	
 
 		# Send the Post request
-		uri = URI('http://0fa75163.compilers.sphere-engine.com/api/v3/submissions?access_token='+ENV['personal_key'])
+		uri = URI("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions?access_token="+ ENV['personal_key'].to_s )
 		uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
  		response = Net::HTTP.post_form(uri, {'sourceCode' => params["sc"] , 'compilerId' => params["Compiler"], 'input' => params["testcase"]})
  		
