@@ -7,11 +7,11 @@ require 'dotenv/load'
 
 
 class CodeController < ApplicationController
-	@AT='6bf3291fc2e34e712d804efe8a198e11'
 	
+	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
-		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token="+ENV['personal_key'])
+		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=" + ENV['personal_key'])
 		req = Net::HTTP::Get.new(url.to_s)
 		res = Net::HTTP.start(url.host, url.port) { 
 							|http|  http.request(req)
@@ -32,7 +32,7 @@ class CodeController < ApplicationController
 
 	def submitcode
 		@ret_view = nil
-		at='6bf3291fc2e34e712d804efe8a198e11'
+		
 
 	
 	
