@@ -20,9 +20,13 @@ class CodeController < ApplicationController
 
 		@language_array = []
 		
+		#arr.each do |i|
+		#	@language_array << [ i["name"],i["id"] ]
+		#end  
+
 		arr.each do |i|
-			@language_array << [ i["name"],i["id"] ]
-		end  
+		@language_array << [ i["name"],i["id"] ]
+		end if arr
 
   	end
 
