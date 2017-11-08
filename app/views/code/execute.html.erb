@@ -1,0 +1,35 @@
+<section id="execute">
+
+
+
+ <%= form_tag("/code/submitcode", method: "post") do %> 
+<h6><strong>Select Compiler </strong></h6>
+  <%= select_tag("Compiler", options_for_select(@language_array)) %>
+  <p>
+<h6><strong>Source Code </strong></h6>
+
+ 
+  
+  <%= text_area_tag(:sc,"",size: "80x20") %>  
+
+  <br>
+ <h6><strong>Input </strong> </h6>
+  
+  <%= text_area_tag(:testcase,"", size: "26x5") %>
+  </p>
+
+
+  <button class="btn btn-default btn-l " id="b1" type="Build" onclick="IsEmpty()  ">Submit</button>
+
+
+
+
+<!--- <%= @ret_view %> -->
+<!---
+<%= submit_tag("Build") %>
+
+-->
+
+<% end %>
+
+</section>
