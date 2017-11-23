@@ -35,7 +35,7 @@ class CodeController < ApplicationController
 	
 
 	def submitcode
-		@ret_view = nil
+		@ret_view =00
 		
 
 	
@@ -71,7 +71,9 @@ class CodeController < ApplicationController
 					@ret_view = out["output"]
 
 			 if out["result"] == 15
-			 render plain:  @ret_view					
+			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
+			# render plain:  @ret_view					
+		   		render "submitcode"
 		   	end  
 		   
 		
