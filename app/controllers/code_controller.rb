@@ -35,7 +35,7 @@ class CodeController < ApplicationController
 	
 
 	def submitcode
-		@ret_view =00
+		@ret_view =nil
 		
 
 	
@@ -61,8 +61,14 @@ class CodeController < ApplicationController
 						                                       "withStderr" => true,
 						                                       "withCmpinfo" => true
 						                                    })
+							loop do 
+						  	sleep(1)
+						    if Net::HTTP.get_response(url).body != nil
+				 			   break
+								  end
+							end
      						out= JSON.parse Net::HTTP.get_response(url).body
-						
+							
 					
 							#PRINT RESPONSE  res.body	
 							#out = JSON.parse(res.body)
