@@ -37,10 +37,6 @@ class CodeController < ApplicationController
 	def submitcode
 		@ret_view =13
 		
-
-	
-	
-
 		# Send the Post request
 		uri = URI("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
@@ -52,9 +48,9 @@ class CodeController < ApplicationController
 		 		
 		 				
 					
-							url = URI.parse('http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/'+returned_id+'?access_token=6bf3291fc2e34e712d804efe8a198e11')
+							url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
 							req = Net::HTTP::Get.new(url.to_s)
-							url.query = URI.encode_www_form({  "access_token" => ENV['personal_key'] ,
+							url.query = URI.encode_www_form({  "access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
 															   "withSource" => true, 
 						                                       "withInput" => true, 
 						                                       "withOutput" => true ,
@@ -67,6 +63,7 @@ class CodeController < ApplicationController
 				 			   break
 								  end
 							end
+
      						out= JSON.parse Net::HTTP.get_response(url).body
 							
 					
