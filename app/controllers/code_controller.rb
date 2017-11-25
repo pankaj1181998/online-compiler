@@ -35,7 +35,7 @@ class CodeController < ApplicationController
 	
 
 	def submitcode
-		@ret_view =nil
+		@ret_view =13
 		
 
 	
@@ -83,7 +83,7 @@ class CodeController < ApplicationController
 		   	end  
 		   
 		
-			
+			@ret_view=17
 			
 														
 #	binding.pry
