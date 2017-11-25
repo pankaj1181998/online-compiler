@@ -42,8 +42,7 @@ class CodeController < ApplicationController
 		uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
  		response = Net::HTTP.post_form(uri, {'sourceCode' => params["sc"] , 'compilerId' => params["Compiler"], 'input' => params["testcase"]})
  		
- 		
- 		returned_id=JSON.parse(response.body)["id"].to_s
+ 			print "here0" 		returned_id=JSON.parse(response.body)["id"].to_s
 					returned_status=-1	
 		 		
 		 				
@@ -63,23 +62,25 @@ class CodeController < ApplicationController
 				 			   break
 								  end
 							end
-
+							print "here1"
      						out= JSON.parse Net::HTTP.get_response(url).body
-							
+							print "here2"
 					
 							#PRINT RESPONSE  res.body	
 							#out = JSON.parse(res.body)
 							returned_status = out["status"]
 							returned_result = out["result"]	
 					@ret_view = out["output"]
-
+					print "here3"
 			 if out["result"] == 15
 			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
 			# render plain:  @ret_view					
+		   		print "main here"
 		   		render "submitcode"
 		   	end  
-		render "submitcode"
-		   
+		   	
+		
+		   print "here5"
 		
 			
 			
