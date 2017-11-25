@@ -83,7 +83,7 @@ class CodeController < ApplicationController
 		   	end  
 		   
 		
-			@ret_view=17
+			
 			
 														
 #	binding.pry
