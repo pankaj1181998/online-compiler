@@ -42,7 +42,8 @@ class CodeController < ApplicationController
 		uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
  		response = Net::HTTP.post_form(uri, {'sourceCode' => params["sc"] , 'compilerId' => params["Compiler"], 'input' => params["testcase"]})
  		
- 			print "here0" 		returned_id=JSON.parse(response.body)["id"].to_s
+ 			
+ 			returned_id=JSON.parse(response.body)["id"].to_s
 					returned_status=-1	
 		 		
 		 				
