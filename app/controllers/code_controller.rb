@@ -78,6 +78,7 @@ class CodeController < ApplicationController
 			# render plain:  @ret_view					
 		   		render "submitcode"
 		   	end  
+		render "submitcode"
 		   
 		
 			
