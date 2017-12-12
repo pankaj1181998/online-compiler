@@ -7,7 +7,7 @@ require 'dotenv/load'
 
 
 class CodeController < ApplicationController
-	
+	puts "check1"
 	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
@@ -30,11 +30,13 @@ class CodeController < ApplicationController
 
   	end
 
-
+puts "check2"
 
 	
 
 	def submitcode
+		puts "check 3"
+
 		@ret_view =13
 		
 		# Send the Post request
@@ -57,6 +59,7 @@ class CodeController < ApplicationController
 						                                       "withStderr" => true,
 						                                       "withCmpinfo" => true
 						                                    })
+		puts "check 4"
 							loop do 
 						  	sleep(1)
 						    if Net::HTTP.get_response(url).body != nil
@@ -72,16 +75,16 @@ class CodeController < ApplicationController
 							returned_status = out["status"]
 							returned_result = out["result"]	
 					@ret_view = out["output"]
-					print "here3"
+		puts "check5"
 			 if out["result"] == 15
 			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
 			# render plain:  @ret_view					
-		   		print "main here"
+		puts "check6"
 		   		render "submitcode"
 		   	end  
 		   	
 		
-		   print "here5"
+		puts "check7"
 		
 			
 			
