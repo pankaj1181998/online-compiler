@@ -7,7 +7,6 @@ require 'dotenv/load'
 
 
 class CodeController < ApplicationController
-	puts "check1"
 	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
@@ -29,14 +28,9 @@ class CodeController < ApplicationController
 		#end if arr
 
   	end
-
-puts "check2"
-
 	
 
 	def submitcode
-		puts "check 3"
-
 		@ret_view =13
 		
 		# Send the Post request
@@ -59,32 +53,28 @@ puts "check2"
 						                                       "withStderr" => true,
 						                                       "withCmpinfo" => true
 						                                    })
-		puts "check 4"
 							loop do 
 						  	sleep(1)
 						    if Net::HTTP.get_response(url).body != nil
 				 			   break
 								  end
 							end
-							print "here1"
+
      						out= JSON.parse Net::HTTP.get_response(url).body
-							print "here2"
 					
 							#PRINT RESPONSE  res.body	
 							#out = JSON.parse(res.body)
 							returned_status = out["status"]
 							returned_result = out["result"]	
 					@ret_view = out["output"]
-		puts "check5"
+
 			 if out["result"] == 15
 			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
-			# render plain:  @ret_view					
-		puts "check6"
-		   		render "submitcode"
+			 render plain:  @ret_view					
+		   	#	render "submitcode"
 		   	end  
 		   	
 		
-		puts "check7"
 		
 			
 			
