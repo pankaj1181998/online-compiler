@@ -67,7 +67,7 @@ class CodeController < ApplicationController
 							returned_status = out["status"]
 							returned_result = out["result"]	
 					@ret_view = out["output"]
-
+					render plain:  @ret_view
 			 if out["result"] == 15
 			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
 			 render plain:  @ret_view					
