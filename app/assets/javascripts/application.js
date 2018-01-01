@@ -14,5 +14,3 @@
 //= require turbolinks
 //= require_tree 
 
-//= require creative.js
-//= require creative.min.js
