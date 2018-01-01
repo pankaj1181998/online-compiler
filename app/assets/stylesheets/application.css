@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+*= require creative.css
+*= require creative.min.css
+*= require bootstrap.min.css
+*= require bootstrap.css

@@ -12,4 +12,7 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require_tree 
+
+//= require creative.js
+//= require creative.min.js
