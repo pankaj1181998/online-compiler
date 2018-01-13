@@ -54,7 +54,7 @@ class CodeController < ApplicationController
 						                                       "withCmpinfo" => true
 						                                    })
 						loop do 
-						 	sleep(1)
+						 	sleep(6)
 						 	  if Net::HTTP.get_response(url).body != nil
 				 			   break
 								  end
@@ -70,20 +70,14 @@ class CodeController < ApplicationController
 			
 			puts out["output"]
 			 if out["result"] == 15
-			# ERB.render("submitcode.html.erb",submitcode.instance_variables)
 			 render plain:  @ret_view					
-		   	#	render "submitcode"
+		   	#	redirect_to action: :view
 		   	end  
 		   	
 		
-		
-			
-			
-														
+													
 #	binding.pry
 	end
-	
-	
 
 end
 
