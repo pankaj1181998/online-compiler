@@ -43,7 +43,7 @@ class CodeController < ApplicationController
 		returned_status=-1	
 		 		
 		 				
-					
+		p returned_id
 		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		req = Net::HTTP::Get.new(url.to_s)
 		url.query = URI.encode_www_form({  "access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
