@@ -56,8 +56,10 @@ class CodeController < ApplicationController
 		out= JSON.parse Net::HTTP.get_response(url).body
 		loop do 
 			sleep 6
-			out= JSON.parse Net::HTTP.get_response(url).body
-			p "response from ideone: "+out.to_s
+			JSON.parse Net::HTTP.get_response(url).body
+			out=JSON.parse Net::HTTP.get_response(url).body
+			
+			p "response from ideone: "+ out.to_s
 			if out["status"] == 0
 				break
 			end
