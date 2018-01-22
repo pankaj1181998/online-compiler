@@ -1,16 +1,16 @@
- require "uri"
+require "uri"
 require "net/http"
 require 'json'
 require 'pry'
 require 'dotenv/load'
-
+require 'platform-api'
 
 
 class CodeController < ApplicationController
 	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
-		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
+			url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		req = Net::HTTP::Get.new(url.to_s)
 		res = Net::HTTP.start(url.host, url.port) { 
 							|http|  http.request(req)
@@ -44,26 +44,51 @@ class CodeController < ApplicationController
 		 		
 		 				
 		p returned_id
+		
+		
+		
+		
+		# uri = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
+		# http = Net::HTTP.new(uri.host, uri.port)
+
+		# begin
+		#   response = http.request(Net::HTTP::Get.new(uri.request_uri))
+
+		#     # process response
+		#     case response
+	 #        when Net::HTTPSuccess
+	 #           out = JSON.parse(response.body)
+	 #        when Net::HTTPUnauthorized
+	 #            puts "Invalid access token"
+	 #        when Net::HTTPForbidden
+	 #            puts "Access denied"
+	 #        when Net::HTTPNotFound
+	 #            puts "Submission not found"
+  #   		end
+		# rescue => e
+  #   		puts "Connection error"
+		# end
+		
 		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		req = Net::HTTP::Get.new(url.to_s)
 		url.query = URI.encode_www_form({  "access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
-											"withSource" => true, 
-						                    "withInput" => true, 
-						                    "withOutput" => true ,
-						                    "withStderr" => true,
-						                    "withCmpinfo" => true
+											"withSource" => "true", 
+						                    "withInput" => "true", 
+						                    "withOutput" => "true" ,
+						                    "withStderr" => "true",
+						                    "withCmpinfo" => "true"
 						                })
 		out= JSON.parse Net::HTTP.get_response(url).body
-		loop do 
-			sleep 6
-			JSON.parse Net::HTTP.get_response(url).body
-			out=JSON.parse Net::HTTP.get_response(url).body
+		# loop do 
+		# 	sleep 6
+		# 	JSON.parse Net::HTTP.get_response(url).body
+		# 	out=JSON.parse Net::HTTP.get_response(url).body
 			
-			p "response from ideone: "+ out.to_s
-			if out["status"] == 0
-				break
-			end
-		end
+		# 	p "response from ideone: "+ out.to_s
+		# 	if out["status"] == 0
+		# 		break
+		# 	end
+		# end
 
 		
 		returned_status = out["status"]
@@ -74,6 +99,8 @@ class CodeController < ApplicationController
 		@ret_view = out["output"]
 			
 		puts out["output"]
+
+			
 
 			if out["result"] == 15
 			    render plain:  @ret_view					
