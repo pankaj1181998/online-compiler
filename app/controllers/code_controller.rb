@@ -45,29 +45,7 @@ class CodeController < ApplicationController
 		 				
 		p returned_id
 		
-		
-		
-		
-		# uri = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
-		# http = Net::HTTP.new(uri.host, uri.port)
 
-		# begin
-		#   response = http.request(Net::HTTP::Get.new(uri.request_uri))
-
-		#     # process response
-		#     case response
-	 #        when Net::HTTPSuccess
-	 #           out = JSON.parse(response.body)
-	 #        when Net::HTTPUnauthorized
-	 #            puts "Invalid access token"
-	 #        when Net::HTTPForbidden
-	 #            puts "Access denied"
-	 #        when Net::HTTPNotFound
-	 #            puts "Submission not found"
-  #   		end
-		# rescue => e
-  #   		puts "Connection error"
-		# end
 		
 		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		req = Net::HTTP::Get.new(url.to_s)
@@ -79,18 +57,8 @@ class CodeController < ApplicationController
 						                    "withCmpinfo" => "true"
 						                })
 		out= JSON.parse Net::HTTP.get_response(url).body
-		# loop do 
-		# 	sleep 6
-		# 	JSON.parse Net::HTTP.get_response(url).body
-		# 	out=JSON.parse Net::HTTP.get_response(url).body
-			
-		# 	p "response from ideone: "+ out.to_s
-		# 	if out["status"] == 0
-		# 		break
-		# 	end
-		# end
-
-		
+		p "output is "
+		p out
 		returned_status = out["status"]
 		returned_result = out["result"]	
 		p "returned is :->"
