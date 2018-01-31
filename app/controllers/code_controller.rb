@@ -10,7 +10,7 @@ class CodeController < ApplicationController
 	at=ENV['personal_key']
 	# GET REQUEST FOR COMPILERS NAME AND ID 
 	def execute
-			url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
+		url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
 		req = Net::HTTP::Get.new(url.to_s)
 		res = Net::HTTP.start(url.host, url.port) { 
 							|http|  http.request(req)
@@ -22,10 +22,6 @@ class CodeController < ApplicationController
 		arr.each do |i|
 			@language_array << [ i["name"],i["id"] ]
 		end  
-
-		#arr.each do |i|
-		#@language_array << [ i["name"],i["id"] ]
-		#end if arr
 
   	end
 	
@@ -56,6 +52,7 @@ class CodeController < ApplicationController
 						                    "withStderr" => "true",
 						                    "withCmpinfo" => "true"
 						                })
+		sleep 10 ;
 		out= JSON.parse Net::HTTP.get_response(url).body
 		p "output is "
 		p out
