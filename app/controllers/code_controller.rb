@@ -7,7 +7,6 @@
 
 
 			class CodeController < ApplicationController
-				at=ENV['personal_key']
 				# GET REQUEST FOR COMPILERS NAME AND ID 
 				def execute
 					url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
@@ -31,7 +30,7 @@
 					
 					# Send the Post request
 					uri = URI("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions?access_token=6bf3291fc2e34e712d804efe8a198e11")
-					uri.query = URI.encode_www_form({"access_token" => ENV['personal_key'] })
+					uri.query = URI.encode_www_form({"access_token" => "6bf3291fc2e34e712d804efe8a198e11" })
 			 		response = Net::HTTP.post_form(uri, {'sourceCode' => params["sc"] , 'compilerId' => params["Compiler"], 'input' => params["testcase"]})
 			 		
 			 			
@@ -66,6 +65,8 @@
 						uri.query = URI.encode_www_form(params)
 						res = Net::HTTP.get_response(uri)
 						puts "Access Token: "+res.body
+					
+
 					render plain: res.body
 					#out= JSON.parse Net::HTTP.get_response(url).body
 					out=res 
