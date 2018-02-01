@@ -42,34 +42,23 @@
 					
 
 					
-					# url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
-					# req = Net::HTTP::Get.new(url.to_s)
-					# url.query = URI.encode_www_form({  "access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
-					# 									"withSource" => "true", 
-					# 				                    "withInput" => "true", 
-					# 				                    "withOutput" => "true" ,
-					# 				                    "withStderr" => "true",
-					# 				                    "withCmpinfo" => "true"
-					# 				                })
+					url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
+					req = Net::HTTP::Get.new(url.to_s)
+					url.query = URI.encode_www_form({  "access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
+														"withSource" => "true", 
+									                    "withInput" => "true", 
+									                    "withOutput" => "true" ,
+									                    "withStderr" => "true",
+									                    "withCmpinfo" => "true"
+									                })
 
 
-					params =  {"access_token" => "6bf3291fc2e34e712d804efe8a198e11" ,
-															"withSource" => "true", 
-										                    "withInput" => "true", 
-									    	                "withOutput" => "true" ,
-									        	            "withStderr" => "true",
-					 				            	        "withCmpinfo" => "true"
-						       }
-						uri = URI("http://0fa75163.compilers.sphere-engine.com/api/v3/submissions/"+returned_id+"?access_token=6bf3291fc2e34e712d804efe8a198e11")
-						#
-						uri.query = URI.encode_www_form(params)
-						res = Net::HTTP.get_response(uri)
-						puts "Access Token: "+res.body
+					out= JSON.parse Net::HTTP.get_response(url).body
+					if out["status"]!=0
+					sleep 5
+					end
+					out= JSON.parse Net::HTTP.get_response(url).body
 					
-
-					render plain: res.body
-					#out= JSON.parse Net::HTTP.get_response(url).body
-					out=res 
 					p "output is "
 					p out
 					returned_status = out["status"]
@@ -78,7 +67,8 @@
 					p "returned_status: "+out["status"].to_s
 					p "returned_result: "+out["result"].to_s
 					@ret_view = out["output"]
-						
+					
+
 					puts out["output"]
 
 						
