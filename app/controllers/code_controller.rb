@@ -9,12 +9,29 @@
 			class CodeController < ApplicationController
 				# GET REQUEST FOR COMPILERS NAME AND ID 
 				def execute
-					url = URI.parse("http://0fa75163.compilers.sphere-engine.com/api/v3/compilers?access_token=6bf3291fc2e34e712d804efe8a198e11")
-					req = Net::HTTP::Get.new(url.to_s)
-					res = Net::HTTP.start(url.host, url.port) { 
-										|http|  http.request(req)
-									} 
-					arr = JSON.parse(res.body)["items"]
+					
+
+					# define access parameters
+					endpoint = "0fa75163.compilers.sphere-engine.com"
+					access_token = "6bf3291fc2e34e712d804efe8a198e11"
+
+					# send request
+					uri = URI.parse("http://" + endpoint + "/api/v3/compilers?access_token=" + access_token)
+					http = Net::HTTP.new(uri.host, uri.port)
+
+					begin
+					    response = http.request(Net::HTTP::Get.new(uri.request_uri))
+
+					    # process response
+					    case response
+					        when Net::HTTPSuccess
+					            arr = JSON.parse(response.body)["items"]
+					        when Net::HTTPUnauthorized
+					            puts "Invalid access token"
+					    end
+					rescue => e
+					    render plain: "Connection error"
+					end
 
 					@language_array = []
 					
