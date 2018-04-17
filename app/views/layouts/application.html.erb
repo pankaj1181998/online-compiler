@@ -5,22 +5,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+   <style>
+     #execute{
+      padding-left: 40px ;
+     }
+   </style>
 	<%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <title>Onlinecompiler</title>
-
+<script src="app/assets/javascripts/particles.js"></script>
   </head>
 
   <body>
-
-        
-
-	<%= yield %>
-
-
+    <script>
+      particlesJS.load('particles-js', 'app/assets/javascripts/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+      });
+    </script>
+    <div id="particles-js">
+    	   <%= yield %>
+    </div>
   </body>
 
 </html>

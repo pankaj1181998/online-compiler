@@ -1,4 +1,5 @@
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', '/assets/javascripts/particles.json', function() {
+windows.load('particles-js', 'app/assets/javascripts/particles.json', function() {
   console.log('callback - particles.js config loaded');
 });
+
