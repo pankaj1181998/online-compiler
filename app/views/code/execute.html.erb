@@ -1,37 +1,23 @@
+<div id="execute" class="container">
 
-
-
-
-
-<div id="execute" >
-
-	<h4>Online.Compiler </h4>
+<h4><strong>Online.Compiler</strong></h4>
 <hr>
  <%= form_tag("/code/submitcode", method: "post") do %> 
-<h4><strong>Select Compiler </strong></h4>
+<h4>Select Compiler </h4>
   <%= select_tag("Compiler", options_for_select(@language_array)) %>
   <p>
-<h4><strong>Source Code </strong></h4>
+  	<br>
+<h4>Source Code</h4>
+<%= text_area_tag(:sc,"",size: "110x15") %>  
 
- 
+<br><br>
+<h4><strong>Input </strong> </h4>
   
-  <%= text_area_tag(:sc,"",size: "80x20") %>  
+<%= text_area_tag(:testcase,"", size: "35x6") %>
+</p>
+<button class="btn btn-primary" >Submit</button>
 
-  <br>
- <h4><strong>Input </strong> </h4>
-  
-  <%= text_area_tag(:testcase,"", size: "26x6") %>
-  </p>
-
-
-  <button >Submit</button>
-
-
-
-	<%= @ret_view %>
- 
-
-
+<%= @ret_view %>
 <% end %>
 
 </div>
